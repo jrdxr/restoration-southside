@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // This is just a wrapper for Webflow Cloud deployment detection
-  // The actual app runs via custom server (server.js)
+  // Required for Webflow Cloud deployment
+  basePath: process.env.BASE_PATH || '',
+  assetPrefix: process.env.ASSETS_PREFIX || '',
 }
 
 module.exports = nextConfig
