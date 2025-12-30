@@ -1,6 +1,5 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "startCommand": "npm start",
-  "nodeVersion": "18"
+  "cloud": {
+    "framework": "nextjs"
+  }
 }
