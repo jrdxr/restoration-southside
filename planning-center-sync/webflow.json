@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "startCommand": "npm start",
+  "nodeVersion": "18"
+}
