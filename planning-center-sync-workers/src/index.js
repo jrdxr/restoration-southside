@@ -587,7 +587,7 @@ async function renderDashboard(env) {
 </head>
 <body>
   <div class="container">
-    <h1>Planning Center → Webflow Sync</h1>
+    <h1>Planning Center to Webflow Sync</h1>
     <p class="subtitle">Cloudflare Workers with Cron Triggers</p>
 
     <button onclick="triggerSync()">Sync Now</button>
