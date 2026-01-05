@@ -1,0 +1,14 @@
+{
+  "name": "planning-center-sync-workers",
+  "version": "1.0.0",
+  "description": "Planning Center to Webflow sync - Cloudflare Workers",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "sync": "wrangler dev --test-scheduled"
+  },
+  "devDependencies": {
+    "wrangler": "^4.54.0"
+  }
+}
