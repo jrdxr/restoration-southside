@@ -604,7 +604,7 @@ async function renderDashboard(env) {
     ${history.map((sync) => `
       <div class="sync-item">
         <div class="sync-header">
-          <div class="sync-time">${new Date(sync.timestamp).toLocaleString()}</div>
+          <div class="sync-time">${new Date(sync.timestamp).toLocaleString('en-US', { timeZone: 'America/New_York' })}</div>
           <span class="sync-badge ${sync.success ? 'success' : 'error'}">
             ${sync.success ? 'Success' : 'Failed'}
           </span>
