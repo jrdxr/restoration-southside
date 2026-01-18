@@ -1,0 +1,13 @@
+.quote_cite {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  grid-column-gap: var(--_spacing---space--3);
+  grid-row-gap: var(--_spacing---space--3);
+
+  font-style: normal;
+  text-align: var(--center-small);
+
+  flex-direction: var(--column-small, row);
+}

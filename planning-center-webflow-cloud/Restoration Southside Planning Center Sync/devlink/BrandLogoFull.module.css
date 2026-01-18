@@ -1,0 +1,27 @@
+.svg_logo_full {
+  width: 100%;
+}
+
+.logo_secondary {
+  fill: var(--swatch--brand-tertiary-500);
+}
+
+.logo_primary {
+  fill: var(--swatch--brand-500);
+}
+
+.logo_primary:where(.w-variant-fd7b5b9e-80f9-1987-7071-9234069af8f4) {
+  fill: color-mix(in srgb, var(--_theme---nav--cta-background-active) calc(100% * var(--_state---false)), var(--_theme---nav--cta-background) calc(100% * var(--_state---true)) );
+}
+
+.logo_primary:where(.w-variant-fe4dc16f-e58f-368b-a384-b463818b2e67) {
+  fill: color-mix(in srgb, var(--_theme---nav--cta-background-active) calc(100% * var(--_state---false)), var(--_theme---nav--cta-background) calc(100% * var(--_state---true)) );
+}
+
+.logo_primary:where(.w-variant-1254a3c2-1349-5e24-a436-dc4fa7545228) {
+  fill: color-mix(in srgb, var(--_theme---nav--cta-background-active) calc(100% * var(--_state---false)), var(--_theme---nav--cta-background) calc(100% * var(--_state---true)) );
+}
+
+.logo_primary:where(.w-variant-79b3923c-4a19-c1b2-6145-c420f6c99330) {
+  fill: var(--_theme---button-primary--background);
+}

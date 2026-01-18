@@ -1,0 +1,61 @@
+.nav_links_component {
+  display: flex;
+  padding-top: var(--_spacing---space--3);
+  padding-bottom: var(--_spacing---space--8);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex: 1;
+  grid-column-gap: var(--_spacing---space--3);
+}
+
+.nav_links_component.desktop {
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.nav_links_component.desktop-110 {
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.nav_links_component.desktop-219 {
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.nav_links_wrap {
+  flex: 1;
+}
+
+.nav_links_wrap.desktop-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.nav_links_wrap.desktop-111 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.nav_links_wrap.desktop-220 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}

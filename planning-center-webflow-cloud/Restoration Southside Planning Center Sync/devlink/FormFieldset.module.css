@@ -1,0 +1,45 @@
+.form_fieldset_wrap {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+  align-items: inherit;
+  justify-content: inherit;
+}
+
+.form_fieldset_list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  grid-column-gap: var(--_spacing---space--2);
+  grid-row-gap: var(--_spacing---space--2);
+  justify-content: inherit;
+}
+
+.form_fieldset_list:where(.w-variant-14c165fa-7397-02ef-8dc0-6e307b6c980f) {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: var(--site--gutter);
+  grid-row-gap: var(--_spacing---space--2);
+  grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+  grid-template-rows: auto;
+}
+
+.form_fieldset_list:where(.w-variant-5fdb0361-c340-58a0-00d3-b0e0b17257ad) {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: var(--site--gutter);
+  grid-row-gap: var(--_spacing---space--2);
+  grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+  grid-template-rows: auto;
+}
+
+.form_fieldset_list:where(.w-variant-ccbf2df7-16d0-30d7-0afb-0df098785596) {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: inherit;
+}
+
+.u-embed-css {
+  display: none;
+}

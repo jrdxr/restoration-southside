@@ -1,0 +1,28 @@
+.u-display-contents {
+  display: contents;
+}
+
+.u-content-wrapper {
+  width: 100%;
+  text-align: start;
+  align-items: start;
+  justify-content: start;
+}
+
+.u-content-wrapper:where(.w-variant-4f54624e-ceb1-0769-a238-365d5e220b70) {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-content-wrapper:where(.w-variant-405b6754-709a-81de-bf32-f0102c0c7aa2) {
+  text-align: end;
+  align-items: end;
+  justify-content: end;
+}
+
+.u-content-wrapper:where(.w-variant-e98b91c1-a8bf-9b6d-a119-f398c9e3f46b) {
+  text-align: var(--center-medium, start);
+  align-items: var(--center-medium, start);
+  justify-content: var(--center-medium, start);
+}

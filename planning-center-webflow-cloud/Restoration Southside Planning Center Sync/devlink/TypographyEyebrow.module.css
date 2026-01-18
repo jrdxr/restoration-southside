@@ -1,0 +1,29 @@
+.u-eyebrow-wrapper {
+  margin-bottom: var(--_spacing---space--5);
+  justify-content: inherit;
+}
+
+.u-eyebrow-text {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.u-eyebrow-text.u-text-style-main {
+  width: 100%;
+}
+
+.u-text-style-main {
+  font-family: var(--_text-style---font-family);
+  font-size: var(--_text-style---font-size);
+  line-height: var(--_text-style---line-height);
+  font-weight: var(--_text-style---font-weight);
+  letter-spacing: var(--_text-style---letter-spacing);
+
+  ---mode--collection-b7222b48-79c4-934f-5073-fc41f016b656: base;
+
+  text-transform: var(--_text-style---text-transform);
+
+  text-wrap: var(--_text-style---text-wrap);
+
+  display: flow-root;
+}

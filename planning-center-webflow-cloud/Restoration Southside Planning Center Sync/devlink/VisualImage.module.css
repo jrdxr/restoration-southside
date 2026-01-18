@@ -1,0 +1,70 @@
+.u-image-wrapper {
+  position: relative;
+
+  overflow: clip;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2/1;
+
+  background-color: var(--_theme---background-skeleton);
+
+  object-fit: cover;
+}
+
+.u-image-wrapper:where(.w-variant-4972adff-107c-1f37-d19c-526a2bf55c28) {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset !important;
+}
+
+.u-image-wrapper:where(.w-variant-a5f35569-5171-ee3d-f7bb-c5b2372249ac) {
+  aspect-ratio: 1/1;
+}
+
+.u-image-wrapper:where(.w-variant-27d05669-180c-3169-9b64-0eda31f8d4d3) {
+  aspect-ratio: 16/9;
+}
+
+.u-image-wrapper:where(.w-variant-a93327ec-aace-62d3-860b-21ee12acd25a) {
+  aspect-ratio: 2/3;
+}
+
+.u-image-wrapper:where(.w-variant-57c7d8f5-d942-5de8-0712-e12fff699502) {
+  aspect-ratio: 3/2;
+}
+
+.u-image-wrapper:where(.w-variant-35ea7d22-774e-1ba9-1dcc-8a392636f83d) {
+  aspect-ratio: 4/5;
+}
+
+.u-image-wrapper:where(.w-variant-8e41429f-9f9e-7697-357e-815bd3e59383) {
+  aspect-ratio: 5/4;
+}
+
+.u-image-wrapper.wide-16-10 {
+  aspect-ratio: 16/9;
+}
+
+.u-image-wrapper.wide-16-12 {
+  aspect-ratio: 16/9;
+}
+
+.u-image {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+
+  display: block;
+  height: 100%;
+
+  object-position: calc(var(--x, 50) * 1%) calc(var(--y, 50) * 1%);
+  object-fit: inherit;
+}

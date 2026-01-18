@@ -1,0 +1,15 @@
+.accordion_wrap {
+  padding-top: 1px;
+}
+
+.u-embed-css {
+  display: none;
+}
+
+.accordion_list {
+  margin-top: calc(var(--_spacing---space--4) * -1);
+}
+
+.u-embed-js {
+  display: none;
+}

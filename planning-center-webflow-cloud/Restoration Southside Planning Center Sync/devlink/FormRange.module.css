@@ -1,0 +1,120 @@
+.u-embed-css {
+  display: none;
+}
+
+.form_label_wrap {
+  position: relative;
+
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  text-align: left;
+}
+
+.form_range_element {
+  position: relative;
+  display: block;
+  margin-top: 0.3rem;
+  border-radius: var(--radius--round);
+  background-color: var(--_theme---background-2);
+}
+
+.form_range_input {
+  display: block;
+  width: 100%;
+  height: 0.7rem;
+  background-color: transparent;
+  border-radius: inherit;
+}
+
+.form_range_fill {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: 0%;
+
+  height: 100%;
+
+  background-color: var(--_theme---text);
+
+  pointer-events: none;
+
+  width: calc(
+  var(--progress) * 100% + var(--thumb-size) * -1 * (var(--progress) - 0.5)
+  );
+
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.form_range_thumb_wrap {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  pointer-events: none;
+
+  transform: translateX(calc(
+  (var(--progress) - 0.5) * 100% - (var(--progress) - 0.5) * var(--thumb-size)
+  ));
+}
+
+.form_range_thumb_element {
+  aspect-ratio: 1/1;
+
+  border-top-style: solid;
+  border-top-width: 0.3rem;
+  border-top-color: var(--_theme---text);
+  border-right-style: solid;
+  border-right-width: 0.3rem;
+  border-right-color: var(--_theme---text);
+  border-bottom-style: solid;
+  border-bottom-width: 0.3rem;
+  border-bottom-color: var(--_theme---text);
+  border-left-style: solid;
+  border-left-width: 0.3rem;
+  border-left-color: var(--_theme---text);
+
+  background-color: var(--_theme---background);
+
+  width: var(--thumb-size);
+
+  border-radius: var(--thumb-radius);
+}
+
+.form_range_output_wrap {
+  display: flex;
+  padding-top: 1rem;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+
+  transform: translateX(calc(
+  (var(--progress) - 0.5) * 100% - (var(--progress) - 0.5) * var(--thumb-size)
+  ));
+}
+
+.form_range_output_element {
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius--small);
+  background-color: var(--_theme---background-2);
+  pointer-events: auto;
+}
+
+.u-embed-js {
+  display: none;
+}
