@@ -4,12 +4,27 @@ compatibility_date = "2024-01-01"
 
 # Cron trigger - runs every 10 minutes
 [triggers]
-crons = ["* * * * *"]
+crons = ["*/10 * * * *"]
 
 # KV namespace for storing sync state and history
 [[kv_namespaces]]
 binding = "SYNC_DATA"
 id = "72470c13ac324470b0d83f7331b9e7f7"
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1
 
 # Environment variables (set these with: wrangler secret put VARIABLE_NAME)
 # PLANNING_CENTER_APP_ID
