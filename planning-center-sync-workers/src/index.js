@@ -3,6 +3,9 @@
  * Runs every 10 minutes via Cron Trigger
  */
 
+// PC = Planning Center
+// WF = Webflow
+
 const PC_BASE_URL = 'https://api.planningcenteronline.com/registrations/v2';
 const WF_BASE_URL = 'https://api.webflow.com/v2';
 
