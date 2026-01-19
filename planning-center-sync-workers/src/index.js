@@ -345,7 +345,6 @@ async function deleteWebflowEvent(webflowId, env) {
 }
 
 // Change Detection
-
 function hasChanged(existingEvent, newEvent, categoryMap) {
 	const existing = existingEvent.fieldData;
 	const changes = [];
@@ -427,6 +426,7 @@ async function renderDashboard(env) {
 <head>
   <title>Planning Center Sync</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -629,7 +629,7 @@ async function renderDashboard(env) {
                   <tr>
                     <td>${item.name}</td>
                     <td>
-                      ${item.changes.map((change) => `<div class="change-detail">• ${change}</div>`).join('')}
+                      ${item.changes.map((change) => `<div class="change-detail">${change}</div>`).join('')}
                     </td>
                   </tr>
                 `).join('')}
