@@ -126,9 +126,6 @@ async function runSync(env) {
 			}
 		}
 
-		// Save state to KV
-		await env.SYNC_DATA.put('sync-state', JSON.stringify(newState));
-
 		result.duration = ((Date.now() - startTime) / 1000).toFixed(2);
 		console.log(`Sync complete in ${result.duration}s`);
 
