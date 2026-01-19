@@ -9,9 +9,7 @@
 const PC_BASE_URL = 'https://api.planningcenteronline.com/registrations/v2';
 const WF_BASE_URL = 'https://api.webflow.com/v2';
 
-// ============================================
 // Main Worker Export
-// ============================================
 
 export default {
 	// Cron trigger handler - runs every 10 minutes
@@ -44,9 +42,7 @@ export default {
 	},
 };
 
-// ============================================
 // Sync Logic
-// ============================================
 
 async function runSync(env) {
 	const startTime = Date.now();
@@ -65,11 +61,6 @@ async function runSync(env) {
 	try {
 		console.log('Starting sync...');
 
-		// Load previous state from KV
-		const lastStateJson = await env.SYNC_DATA.get('sync-state');
-		const lastState = lastStateJson ? JSON.parse(lastStateJson) : {};
-		const newState = {};
-
 		// Fetch data
 		const pcEvents = await fetchPlanningCenterEvents(env);
 		console.log(`Found ${pcEvents.length} future events`);
@@ -84,14 +75,13 @@ async function runSync(env) {
 		// Process each Planning Center event
 		for (const pcEvent of pcEvents) {
 			pcEventIds.add(pcEvent.pc_signup_time_id);
-			newState[pcEvent.pc_signup_time_id] = pcEvent.logo_url;
 
 			try {
 				const existingEvent = webflowEvents[pcEvent.pc_signup_time_id];
 
 				if (existingEvent) {
 					// Check if update needed
-					const changeResult = hasChanged(existingEvent, pcEvent, categoryMap, lastState);
+					const changeResult = hasChanged(existingEvent, pcEvent, categoryMap);
 					if (changeResult.changed) {
 						console.log(`Updating: ${pcEvent.name}`);
 						await updateWebflowEvent(existingEvent.id, pcEvent, categoryMap, env);
@@ -161,9 +151,7 @@ async function runSync(env) {
 	return result;
 }
 
-// ============================================
 // Planning Center API
-// ============================================
 
 async function fetchPlanningCenterEvents(env) {
 	const auth = btoa(`${env.PLANNING_CENTER_APP_ID}:${env.PLANNING_CENTER_SECRET}`);
@@ -213,9 +201,7 @@ async function fetchPlanningCenterEvents(env) {
 	return events;
 }
 
-// ============================================
 // Webflow API
-// ============================================
 
 async function webflowFetch(path, env, options = {}) {
 	const res = await fetch(`${WF_BASE_URL}${path}`, {
@@ -290,7 +276,7 @@ async function createWebflowEvent(event, categoryMap, env) {
 			'planning-center-id': event.pc_signup_id,
 			'planning-center-sign-up-time-id': event.pc_signup_time_id,
 			description: event.description,
-			'cover-image': event.logo_url,
+			'planning-center-image': event.logo_url,
 			'event-url': event.registration_url,
 			date: event.starts_at,
 			'time-2': event.starts_at,
@@ -323,7 +309,7 @@ async function updateWebflowEvent(webflowId, event, categoryMap, env) {
 			'planning-center-id': event.pc_signup_id,
 			'planning-center-sign-up-time-id': event.pc_signup_time_id,
 			description: event.description,
-			'cover-image': event.logo_url,
+			'planning-center-image': event.logo_url,
 			'event-url': event.registration_url,
 			date: event.starts_at,
 			'time-2': event.starts_at,
@@ -361,11 +347,9 @@ async function deleteWebflowEvent(webflowId, env) {
 	]);
 }
 
-// ============================================
 // Change Detection
-// ============================================
 
-function hasChanged(existingEvent, newEvent, categoryMap, lastState) {
+function hasChanged(existingEvent, newEvent, categoryMap) {
 	const existing = existingEvent.fieldData;
 	const changes = [];
 
@@ -386,7 +370,7 @@ function hasChanged(existingEvent, newEvent, categoryMap, lastState) {
 	};
 
 	if (normalize(existing.name) !== normalize(newEvent.name)) {
-		changes.push(`Name: "${existing.name}" → "${newEvent.name}"`);
+		changes.push(`Name: "${existing.name}" "${newEvent.name}"`);
 	}
 	if (normalize(existing.description) !== normalize(newEvent.description)) {
 		changes.push('Description updated');
@@ -395,15 +379,14 @@ function hasChanged(existingEvent, newEvent, categoryMap, lastState) {
 		changes.push('Event URL updated');
 	}
 	if (normalize(existing.date) !== normalize(newEvent.starts_at)) {
-		changes.push(`Date: ${formatDate(existing.date)} → ${formatDate(newEvent.starts_at)}`);
+		changes.push(`Date: ${formatDate(existing.date)} ${formatDate(newEvent.starts_at)}`);
 	}
 	if (normalize(existing['all-day-event']) !== normalize(newEvent.all_day)) {
-		changes.push(`All-day: ${existing['all-day-event']} → ${newEvent.all_day}`);
+		changes.push(`All-day: ${existing['all-day-event']} ${newEvent.all_day}`);
 	}
 
-	const lastImageUrl = lastState[newEvent.pc_signup_time_id] || '';
-	if (normalize(lastImageUrl) !== normalize(newEvent.logo_url)) {
-		changes.push('Cover image updated');
+	if (normalize(existing['planning-center-image']) !== normalize(newEvent.logo_url)) {
+		changes.push('Planning center image updated');
 	}
 
 	const existingCats = existing.categories || [];
@@ -422,9 +405,7 @@ function hasChanged(existingEvent, newEvent, categoryMap, lastState) {
 	};
 }
 
-// ============================================
-// KV Storage
-// ============================================
+// Key Value Storage
 
 async function saveHistory(env, result) {
 	const historyJson = await env.SYNC_DATA.get('sync-history');
@@ -438,9 +419,7 @@ async function saveHistory(env, result) {
 	await env.SYNC_DATA.put('sync-history', JSON.stringify(filtered));
 }
 
-// ============================================
 // Dashboard
-// ============================================
 
 async function renderDashboard(env) {
 	const historyJson = await env.SYNC_DATA.get('sync-history');
