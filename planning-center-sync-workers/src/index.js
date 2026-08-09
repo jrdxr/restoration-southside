@@ -133,7 +133,7 @@ async function runSync(env) {
 			result.success = false;
 		}
 	} catch (error) {
-		console.error('Fatal error:', error);
+		console.error(`Fatal error: ${error.message}\n${error.stack}`);
 		result.success = false;
 		result.errors.push({
 			fatal: true,
@@ -161,7 +161,10 @@ async function fetchPlanningCenterEvents(env) {
 		}
 	});
 
-	if (!res.ok) throw new Error(`Planning Center API error: ${res.status}`);
+	if (!res.ok) {
+		const body = await res.text().catch(() => '<no body>');
+		throw new Error(`Planning Center API error: ${res.status} ${res.statusText} — ${body.slice(0, 500)}`);
+	}
 
 	const data = await res.json();
 	const events = [];
@@ -212,8 +215,8 @@ async function webflowFetch(path, env, options = {}) {
 	});
 
 	if (!res.ok) {
-		const text = await res.text();
-		throw new Error(`Webflow API error ${res.status}: ${text}`);
+		const body = await res.text().catch(() => '<no body>');
+		throw new Error(`Webflow API error: ${res.status} ${res.statusText} — ${body.slice(0, 500)}`);
 	}
 
 	return res.json();
@@ -235,18 +238,33 @@ async function getWebflowCategories(env) {
 }
 
 async function getWebflowEvents(env) {
-	const data = await webflowFetch(
-		`/collections/${env.WEBFLOW_EVENTS_COLLECTION_ID}/items`,
-		env
-	);
-
+	// Webflow's Items endpoint defaults to a max of 100 items per page.
+	// Loop through pages via offset until we've collected everything,
+	// otherwise events beyond the first 100 are invisible to the sync
+	// and get recreated on every run.
 	const map = {};
-	for (const item of data.items || []) {
-		const pcId = item.fieldData?.['planning-center-sign-up-time-id'];
-		if (pcId) {
-			map[pcId] = item;
+	let offset = 0;
+	const limit = 100;
+
+	while (true) {
+		const data = await webflowFetch(
+			`/collections/${env.WEBFLOW_EVENTS_COLLECTION_ID}/items?limit=${limit}&offset=${offset}`,
+			env
+		);
+
+		for (const item of data.items || []) {
+			const pcId = item.fieldData?.['planning-center-sign-up-time-id'];
+			if (pcId) {
+				map[pcId] = item;
+			}
 		}
+
+		if (!data.items || data.items.length < limit) {
+			break;
+		}
+		offset += limit;
 	}
+
 	return map;
 }
 
